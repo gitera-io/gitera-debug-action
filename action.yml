@@ -1,0 +1,37 @@
+name: Gitera Debug
+description: Pause a failed job for up to 15 minutes and open a secure terminal in the Gitera dashboard
+author: Gitera
+branding:
+  icon: terminal
+  color: blue
+
+inputs:
+  mode:
+    description: "failure: open a session when this step runs (use with if: failure()). armed: open one only when armed from Gitera or /gitera debug."
+    required: false
+    default: failure
+  secrets:
+    # No expression syntax here: the runner evaluates it even inside descriptions.
+    description: "JSON of all secrets (pass toJSON(secrets) in an expression) so every secret value is masked in the terminal and in fix diffs."
+    required: false
+    default: "{}"
+  timeout-minutes:
+    description: Maximum pause in minutes (1-15).
+    required: false
+    default: "15"
+  gitera-url:
+    description: Gitera base URL.
+    required: false
+    default: https://app.gitera.io
+
+runs:
+  using: composite
+  steps:
+    - name: Gitera debug session
+      shell: bash
+      run: node "$GITHUB_ACTION_PATH/agent.js"
+      env:
+        GITERA_URL: ${{ inputs.gitera-url }}
+        GITERA_DEBUG_MODE: ${{ inputs.mode }}
+        GITERA_DEBUG_SECRETS: ${{ inputs.secrets }}
+        GITERA_DEBUG_TIMEOUT: ${{ inputs.timeout-minutes }}
