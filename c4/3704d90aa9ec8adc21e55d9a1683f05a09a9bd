@@ -1,0 +1,26 @@
+README.md
+  h_75d26f28339534 1-41
+action.yml
+  h_75d26f28339534 1-37
+agent.js
+  h_75d26f28339534 1-232
+lib/mask.js
+  h_75d26f28339534 1-95
+lib/outbox.js
+  h_75d26f28339534 1-93
+lib/pty_bridge.py
+  h_75d26f28339534 1-90
+lib/shell-env.js
+  h_75d26f28339534 1-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c43704d90aa9ec8adc21e55d9a1683f05a09a9bd",
+  "prompts": {},
+  "humans": {
+    "h_75d26f28339534": {
+      "author": "Shayki Abramczyk <shayki5@gmail.com>"
+    }
+  }
+}
