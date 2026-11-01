@@ -26,7 +26,9 @@ const REQUEST_TIMEOUT_MS = 10_000;
 const CLEANUP_GRACE_MS = 5_000;
 const OIDC_AUDIENCE = 'gitera';
 
-const baseUrl = (process.env.GITERA_URL || 'https://app.gitera.io').replace(/\/$/, '');
+// Fixed on purpose: the job's OIDC token (audience "gitera") is sent here, and a server that
+// received it could replay it to Gitera to open sessions as this job.
+const baseUrl = 'https://app.gitera.io';
 const mode = process.env.GITERA_DEBUG_MODE === 'armed' ? 'armed' : 'failure';
 const timeoutMinutes = Math.min(Math.max(Number(process.env.GITERA_DEBUG_TIMEOUT) || MAX_MINUTES, 1), MAX_MINUTES);
 const workspace = process.env.GITHUB_WORKSPACE || process.cwd();

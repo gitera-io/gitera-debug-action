@@ -19,10 +19,6 @@ inputs:
     description: Maximum pause in minutes (1-15).
     required: false
     default: "15"
-  gitera-url:
-    description: Gitera base URL.
-    required: false
-    default: https://app.gitera.io
 
 runs:
   using: composite
@@ -31,7 +27,6 @@ runs:
       shell: bash
       run: node "$GITHUB_ACTION_PATH/agent.js"
       env:
-        GITERA_URL: ${{ inputs.gitera-url }}
         GITERA_DEBUG_MODE: ${{ inputs.mode }}
         GITERA_DEBUG_SECRETS: ${{ inputs.secrets }}
         GITERA_DEBUG_TIMEOUT: ${{ inputs.timeout-minutes }}
